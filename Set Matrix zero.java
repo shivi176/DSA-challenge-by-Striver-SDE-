@@ -5,7 +5,7 @@ class Solution {
 
         boolean firstRowZero = false;
         boolean firstColZero = false;
-
+ 
         // to check and remember that the og first col had a zero
         for (int j = 0; j < cols; j++) {
             if (matrix[0][j] == 0) {
