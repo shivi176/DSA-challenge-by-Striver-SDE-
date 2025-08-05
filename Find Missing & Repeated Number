@@ -5,7 +5,7 @@ class Solution {
         int missing = -1, repeat = -1;
 
         // Store frequency of each number in the grid
-        Map<Integer, Integer> freq = new HashMap<>();
+        Map<Integer, Integer> freq = new HashMap<>(); 
         for (int[] row : grid) {
             for (int num : row) {
                 freq.put(num, freq.getOrDefault(num, 0) + 1);
