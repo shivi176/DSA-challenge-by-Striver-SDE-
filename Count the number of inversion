@@ -1,0 +1,30 @@
+class Solution {
+    public int numberOfPermutations(int n, int[][] requirements) {
+        final int MOD = 1_000_000_007, MAX_INV = 400;
+        int[][] dp = new int[n + 1][MAX_INV + 1];
+        int[] req = new int[n + 1];
+        Arrays.fill(req, -1);
+
+        for (int[] r : requirements) {
+            req[r[0] + 1] = r[1];
+        }
+
+        dp[1][0] = 1; // 1 permutation (single element), 0 inversions
+
+        for (int i = 2; i <= n; i++) {
+            for (int j = 0; j <= MAX_INV; j++) {
+                for (int k = 0; k < i && k <= j; k++) {
+                    dp[i][j] = (dp[i][j] + dp[i - 1][j - k]) % MOD;
+                }
+            }
+            if (req[i] != -1) {
+                for (int j = 0; j <= MAX_INV; j++) {
+                    if (j != req[i]) dp[i][j] = 0;
+                }
+            }
+        }
+
+        return dp[n][req[n]];
+    }
+}
+
